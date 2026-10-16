@@ -1,0 +1,85 @@
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  height: var(--nav-height);
+  background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.navbar__inner {
+  max-width: 1280px;
+  height: 100%;
+  margin: 0 auto;
+  padding: 0 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.navbar__brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.15rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.navbar__logo {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 32px;
+  border-radius: 8px;
+  background-color: var(--color-red);
+  font-size: 1rem;
+  font-weight: 800;
+}
+
+.navbar__links {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.navbar__links a {
+  padding: 0.5rem 0.9rem;
+  border-radius: var(--radius);
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  transition: all 0.15s ease;
+}
+
+.navbar__links a:hover {
+  color: var(--color-text);
+  background-color: var(--color-surface-hover);
+}
+
+/* NavLink adds .active automatically on the matching route */
+.navbar__links a.active {
+  color: var(--color-text);
+  background-color: var(--color-red);
+}
+
+.navbar__actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-left: auto;
+}
+
+@media (max-width: 640px) {
+  .navbar__inner {
+    gap: 1rem;
+    padding: 0 1rem;
+  }
+
+  .navbar__brand span:last-child {
+    display: none;
+  }
+
+  .navbar__links a {
+    padding: 0.5rem 0.6rem;
+  }
+}
