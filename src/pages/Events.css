@@ -20,3 +20,43 @@
   grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
   gap: 20px;
 }
+
+.events-search {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.events-search-input {
+  flex: 1;
+  padding: 10px;
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  color: var(--color-text);
+  font-size: 14px;
+}
+
+.events-search-input:focus {
+  border-color: var(--color-red);
+  outline: none;
+}
+
+.events-result-text {
+  color: var(--color-text-muted);
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.events-pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  margin-top: 30px;
+}
+
+.events-page-text {
+  color: var(--color-text-muted);
+  font-size: 14px;
+}
