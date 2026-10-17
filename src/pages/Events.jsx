@@ -7,15 +7,21 @@ import {
     setError,
     setSearch,
     setPage,
+    setCategory,
+    toggleUpcoming,
     getEvents,
     getLoading,
     getError,
     getSearch,
     getPage,
     getPages,
+    getCategory,
+    getUpcoming,
 } from '../features/events/eventsSlice';
 import EventCard from '../components/EventCard';
 import './Events.css';
+
+const categories = ['Music', 'Sports', 'Arts & Theatre', 'Film', 'Miscellaneous'];
 
 function Events() {
     const dispatch = useDispatch();
@@ -26,8 +32,9 @@ function Events() {
     const search = useSelector(getSearch);
     const page = useSelector(getPage);
     const pages = useSelector(getPages);
+    const category = useSelector(getCategory);
+    const upcoming = useSelector(getUpcoming);
 
-    // what the user is typing (not searched yet)
     const [text, setText] = useState(search);
 
     useEffect(() => {
@@ -35,7 +42,7 @@ function Events() {
         dispatch(setLoading());
 
         try {
-            const data = await fetchEvents(search, page);
+            const data = await fetchEvents(search, page, category, upcoming);
             dispatch(setEvents(data));
         } catch (err) {
             dispatch(setError(err.message));
@@ -43,7 +50,7 @@ function Events() {
         }
 
         loadEvents();
-    }, [search, page, dispatch]);
+    }, [search, page, category, upcoming, dispatch]);
 
     function handleSearch(event) {
         event.preventDefault();
@@ -53,6 +60,14 @@ function Events() {
     function handleClear() {
         setText('');
         dispatch(setSearch(''));
+    }
+
+    function handleCategory(name) {
+        dispatch(setCategory(name));
+    }
+
+    function handleUpcoming() {
+        dispatch(toggleUpcoming());
     }
 
     function handlePrevious() {
@@ -65,7 +80,6 @@ function Events() {
         window.scrollTo(0, 0);
     }
 
-    // Ticketmaster only allows about 50 pages when size is 20
     let lastPage = pages - 1;
     if (lastPage > 49) {
         lastPage = 49;
@@ -92,6 +106,24 @@ function Events() {
             </button>
             )}
         </form>
+
+        <div className="events-filters">
+            <div className="events-categories">
+                <button className={category === '' ? 'category-btn active' : 'category-btn'} onClick={() => handleCategory('')}>
+                    All
+                </button>
+
+                {categories.map((name) => (
+                    <button key={name} className={category === name ? 'category-btn active' : 'category-btn'} onClick={() => handleCategory(name)}>
+                        {name}
+                    </button>
+                ))}
+            </div>
+
+            <button className={upcoming ? 'upcoming-btn active' : 'upcoming-btn'} onClick={handleUpcoming}>
+                Upcoming First: {upcoming ? 'ON' : 'OFF'}
+            </button>
+        </div>
 
         {search && (
             <p className="events-result-text">Showing results for "{search}"</p>
