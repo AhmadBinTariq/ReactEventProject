@@ -1,0 +1,22 @@
+.events-heading {
+  font-size: 28px;
+  margin-bottom: 20px;
+}
+
+.events-message {
+  color: var(--color-text-muted);
+  text-align: center;
+  padding: 40px 0;
+}
+
+.events-error {
+  color: var(--color-red);
+  text-align: center;
+  padding: 40px 0;
+}
+
+.events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+}
