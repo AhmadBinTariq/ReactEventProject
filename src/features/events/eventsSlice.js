@@ -8,6 +8,8 @@ const initialState = {
     page: 0,
     pages: 0,
     current: null,
+    category: '',
+    upcoming: false,
 };
 
 const slice = createSlice({
@@ -43,6 +45,16 @@ const slice = createSlice({
             state.current = action.payload;
             state.loading = false;
         },
+
+        setCategory: (state, action) => {
+            state.category = action.payload;
+            state.page = 0;
+        },
+
+        toggleUpcoming: (state) => {
+            state.upcoming = !state.upcoming;
+            state.page = 0;
+        },
     },
 });
 
@@ -53,6 +65,8 @@ export const {
     setSearch,
     setPage,
     setCurrent,
+    setCategory,      
+    toggleUpcoming,
 } = slice.actions;
 
 export const getEvents = (state) => state.events.list;
@@ -62,5 +76,7 @@ export const getSearch = (state) => state.events.search;
 export const getPage = (state) => state.events.page;
 export const getPages = (state) => state.events.pages;
 export const getCurrent = (state) => state.events.current;
+export const getCategory = (state) => state.events.category;  
+export const getUpcoming = (state) => state.events.upcoming;
 
 export default slice.reducer;
