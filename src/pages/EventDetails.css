@@ -109,3 +109,9 @@
   text-align: center;
   padding: 40px 0;
 }
+
+.details-success {
+  color: var(--color-success);
+  font-size: 14px;
+  margin-top: 15px;
+}
