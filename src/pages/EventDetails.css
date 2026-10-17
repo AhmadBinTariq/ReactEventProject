@@ -1,0 +1,111 @@
+.details-back {
+  display: inline-block;
+  color: var(--color-text-muted);
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+.details-back:hover {
+  color: var(--color-text);
+}
+
+.details-image {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  background-color: var(--color-surface);
+}
+
+.details-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.details-badges {
+  display: flex;
+  gap: 8px;
+}
+
+.details-badge {
+  padding: 4px 12px;
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  font-size: 13px;
+  color: var(--color-text-muted);
+}
+
+.details-badge-green {
+  border-color: var(--color-success);
+  color: var(--color-success);
+}
+
+.details-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.details-title {
+  font-size: 36px;
+  margin-top: 20px;
+}
+
+.details-subtitle {
+  color: var(--color-text-muted);
+  font-style: italic;
+  margin-top: 8px;
+}
+
+.details-line {
+  border: none;
+  border-top: 1px solid var(--color-border);
+  margin: 30px 0;
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 25px;
+}
+
+.details-label {
+  font-size: 12px;
+  color: var(--color-text-muted);
+  letter-spacing: 1px;
+  margin-bottom: 6px;
+}
+
+.details-value {
+  font-size: 16px;
+  font-weight: 600;
+}
+
+.details-section {
+  margin-top: 40px;
+}
+
+.details-section h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.details-section p {
+  color: var(--color-text-muted);
+  line-height: 1.6;
+}
+
+.details-message {
+  color: var(--color-text-muted);
+  text-align: center;
+  padding: 40px 0;
+}
+
+.details-error {
+  color: var(--color-red);
+  text-align: center;
+  padding: 40px 0;
+}
