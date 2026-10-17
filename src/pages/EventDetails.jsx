@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
-import { Link, useParams } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useParams, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchEventById } from '../api/ticketmaster';
 import {
@@ -10,15 +10,26 @@ import {
     getLoading,
     getError,
 } from '../features/events/eventsSlice';
+import { selectUser } from '../features/auth/authSlice';
+import {
+    registerEvent,
+    cancelEvent,
+    getRegistrations,
+} from '../features/registerations/registerationsSlice';
 import './EventDetails.css';
 
 function EventDetails() {
     const { id } = useParams();
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const event = useSelector(getCurrent);
     const loading = useSelector(getLoading);
     const error = useSelector(getError);
+    const user = useSelector(selectUser);
+    const registrations = useSelector(getRegistrations);
+
+    const [message, setMessage] = useState('');
 
     useEffect(() => {
         async function loadEvent() {
@@ -34,6 +45,15 @@ function EventDetails() {
 
         loadEvent();
     }, [id, dispatch]);
+
+    function isRegistered(eventId) {
+        if (!user) {
+            return false;
+        }
+
+        const myEvents = registrations[user.id] || [];
+        return myEvents.some((e) => e.id === eventId);
+    }
 
     if (loading) {
         return <p className="details-message">Loading event...</p>;
@@ -60,6 +80,34 @@ function EventDetails() {
     const country = venue?.country?.name || 'N/A';
     const address = venue?.address?.line1 || 'N/A';
 
+    const registered = isRegistered(event.id);
+
+    function handleRegister() {
+        if (!user) {
+            navigate('/login');
+            return;
+        }
+
+        const eventInfo = {
+            id: event.id,
+            name: event.name,
+            image: image,
+            date: date,
+            time: time,
+            venue: venueName,
+            city: city,
+            category: category,
+        };
+
+        dispatch(registerEvent({ userId: user.id, event: eventInfo }));
+        setMessage('You are registered for this event!');
+    }
+
+    function handleCancel() {
+        dispatch(cancelEvent({ userId: user.id, eventId: event.id }));
+        setMessage('Your registration has been cancelled.');
+    }
+
     return (
         <div>
         <Link to="/events" className="details-back">
@@ -68,11 +116,25 @@ function EventDetails() {
 
         <img className="details-image" src={image} alt={event.name} />
 
-        <div className="details-top">
-            <div className="details-badges">
-            <span className="details-badge details-badge-green">{status}</span>
-            <span className="details-badge">{category}</span>
+        <div>
+            <div className="details-top">
+                <div className="details-badges">
+                    <span className="details-badge details-badge-green">{status}</span>
+                    <span className="details-badge">{category}</span>
+                </div>
+                <div className="details-buttons">
+                {registered ? (
+                    <button className="btn btn--outline" onClick={handleCancel}>
+                    Cancel Registration
+                    </button>
+                ) : (
+                    <button className="btn btn--primary" onClick={handleRegister}>
+                    {user ? 'Register' : 'Login to Register'}
+                    </button>
+                )}
+                </div>
             </div>
+            {message && <p className="details-success">{message}</p>}
         </div>
 
         <h1 className="details-title">{event.name}</h1>
