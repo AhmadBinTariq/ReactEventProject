@@ -1,0 +1,52 @@
+.home {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 80px 20px;
+}
+
+.home-tag {
+  padding: 6px 14px;
+  border: 1px solid var(--color-red);
+  border-radius: 20px;
+  color: var(--color-red);
+  font-size: 13px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+.home-title {
+  font-size: 56px;
+  margin-bottom: 15px;
+}
+
+.home-text {
+  color: var(--color-text-muted);
+  font-size: 18px;
+  margin-bottom: 40px;
+}
+
+.home-student {
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-lg);
+  padding: 20px 40px;
+  margin-bottom: 40px;
+}
+
+.home-name {
+  font-size: 20px;
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.home-roll {
+  color: var(--color-text-muted);
+  font-size: 15px;
+}
+
+.home-button {
+  padding: 14px 32px;
+  font-size: 16px;
+}
