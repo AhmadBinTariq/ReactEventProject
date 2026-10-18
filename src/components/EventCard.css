@@ -38,3 +38,16 @@
   font-size: 14px;
   margin-bottom: 4px;
 }
+
+
+.my-card-cancel {
+  width: 100%;
+  margin-top: 12px;
+}
+
+.my-card-done {
+  margin-top: 12px;
+  color: var(--color-success);
+  font-size: 14px;
+  font-weight: bold;
+}

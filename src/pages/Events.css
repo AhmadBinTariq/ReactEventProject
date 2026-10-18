@@ -96,3 +96,37 @@
   border-color: var(--color-red);
   color: white;
 }
+
+
+.my-events-heading {
+  font-size: 28px;
+  margin-bottom: 8px;
+}
+
+.my-events-text {
+  color: var(--color-text-muted);
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.my-events-section {
+  font-size: 20px;
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+
+.my-events-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.my-events-empty {
+  text-align: center;
+  padding: 50px 0;
+  color: var(--color-text-muted);
+}
+
+.my-events-empty p {
+  margin-bottom: 20px;
+}
